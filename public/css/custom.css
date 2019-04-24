@@ -1,0 +1,72 @@
+.blur-shadow{
+	-webkit-box-shadow: -16px 21px 7px 0px rgba(0,0,0,0.75);
+-moz-box-shadow: -16px 21px 7px 0px rgba(0,0,0,0.75);
+box-shadow: -16px 21px 7px 0px rgba(0,0,0,0.75);
+}
+
+.dark-cyan-background {
+	background: #003a4d;
+}
+
+.porcelain{
+	background-color:#ECF0F1;
+}
+
+.centered-text {
+	text-align: center;
+}
+
+#about-us h1 {
+	text-align: center;
+}
+
+#portfolio h3{
+	text-transform: uppercase;
+	color: #003a4d;
+}
+
+#portfolio p {
+	color: #003a4d;
+}
+
+.on-top-of{
+	position: relative;
+
+}
+
+.p-title {
+	font-size: 1.5em;
+	text-transform: uppercase;
+}
+
+
+.portfolio-item .portfolio-image {
+    position: relative;
+    overflow: inherit;
+}
+
+
+
+#slider h1 { 
+	text-align:center;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate( -50%, -50% );
+	font-size: 5em;
+	color: white;
+	text-transform: uppercase;
+  }
+
+@media (max-width:700px) {
+	#slider h1 {
+		font-size: 2em;
+	}
+}
+
+@media (max-width:700px) {
+	.p-title {
+		font-size: 1.2em;
+		margin-top:0.3em;
+	}
+}

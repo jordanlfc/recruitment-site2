@@ -1,0 +1,153 @@
+<% include ./partials/head %>
+ <link rel="stylesheet" href="/css/portal.css">
+ 
+<section class = "container">
+
+<table class="table table-striped custom-table">
+    
+    <thead>
+        
+        <tr>
+            <th>Title</th>
+            <th>Location</th>
+            <th>Salary</th>
+            <th class = 'centered'>Controls</th>
+        </tr>
+    </thead>
+    <tbody>
+        <%allJobs.map(jobs => { %>
+        <tr>
+            <td><%=jobs.title%></td>
+            <td><%=jobs.location%></td>
+            <td><%=jobs.salary%></td>
+            <td class ='td-flex'>
+                <a class ='btn btn-sm btn-warning' href = '/portal/<%=jobs._id%>/edit'>Edit</a>
+                </form>
+                <form id ='del-form'action ='/admin/portal/<%=jobs._id%>?_method=DELETE' method = 'POST'>
+                    <button class="btn btn-sm btn-danger">Delete</button>
+                </form>
+                <form>
+                    <button class="btn btn-sm btn-info">Hide</button>
+                </form>
+            </td>
+        </tr>
+        <% }) %>
+    </tbody>
+</table>
+
+
+
+</head>
+
+<div class="stretched">
+
+		<div id="wrapper" class="clearfix">
+
+		<!-- Content
+		============================================= -->
+		<section id="content">
+
+			<div class="content-wrap bg-light">
+
+				<div class="container">
+
+					<div class="row justify-content-center">
+						<div class="col-lg-7 col-md-10">
+							<div class="card shadow-sm">
+								<div class="card-header">
+									<h4 class="mb-0">Form Feilds</h4>
+								</div>
+								<div class="card-body">
+
+									<div class="form-widget">
+
+										<div class="form-result"></div>
+
+										<div class="form-process css3-spinner">
+											<div class="css3-spinner-double-bounce1"></div>
+											<div class="css3-spinner-double-bounce2"></div>
+										</div>
+
+										<form class="nobottommargin" id="template-contactform" name="template-contactform"
+											action="/admin/portal" method="post">
+
+											<div class="row">
+
+												<div class="col-12 bottommargin-sm">
+													<label for="title">Job Title<small class="text-danger">*</small></label>
+													<input type="text" id="title" name="title" value=""
+														class="form-control required" placeholder="Enter the job title" />
+												</div>
+												<div class="col-12 bottommargin-sm">
+													<label for="location">Location<small class="text-danger">*</small></label>
+													<input type="text" id="location" name="location" value=""
+														class="form-control required" placeholder="Enter Location" />
+												</div>
+
+												<div class="col-12 bottommargin-sm">
+													<label for="salary">Salary<small class="text-danger">*</small></label>
+													<input type="text" id="salary" name="salary" value=""
+														class="form-control required" placeholder="Salary" />
+												</div>
+												<div class="col-12 bottommargin-sm">
+													<label for="date">Start Date<small class="text-danger">*</small></label>
+													<input type="text" id="date" name="date" value=""
+														class="form-control required" placeholder="Enter the Date" />
+												</div>
+
+												<div class="col-12 bottommargin-sm">
+													<label for="requirements">Requirements<small
+															class="text-danger">*</small></label>
+													<textarea class="required form-control textarea-message" id="requirements"
+														name="requirements" rows="6" cols="30"></textarea>
+												</div>
+												<div class="col-12 bottommargin-sm">
+													<label for="description">Job Description<small
+															class="text-danger">*</small></label>
+													<textarea class="required form-control textarea-message" id="description"
+														name="description" rows="6" cols="30"></textarea>
+												</div>
+												<div class="col-12 bottommargin-sm">
+													<label for="what_">What you've got?<small
+															class="text-danger">*</small></label>
+													<textarea class="required form-control textarea-message" id="what_"
+														name="what_" rows="6" cols="30"></textarea>
+												</div>
+												<div class="col-12 bottommargin-sm">
+													<label for="other">Other<small
+															class="text-danger">*</small></label>
+													<textarea class="required form-control textarea-message" id="other"
+														name="other" rows="6" cols="30"></textarea>
+												</div>
+
+
+
+												<div class="col-12">
+													<button type="submit" name="template-contactform-submit"
+														class="btn btn-secondary btn-block btn-lg">Send</button>
+												</div>
+
+											</div>
+
+										</form>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+
+			</div>
+	</div>
+
+	</section><!-- #content end -->
+
+	<!-- Go To Top
+	============================================= -->
+	<div id="gotoTop" class="icon-angle-up"></div>
+
+
+</body>
+
+</html>
