@@ -16,8 +16,41 @@
 	#head .lead { font-size: 34px; }
 }
 
-.splitter {
-	margin-top:10em;
+.custom-button-red {
+	height:80%;
+	background:#C3272B;
+	border:none;
+}
+.custom-button-green {
+	height:80%;
+	background:#26A65B;
+	border:none;
+}
+.custom-button-yellow {
+	height:80%;
+	background:#E08A1E;
+	border:none;
+}
+
+
+.nice-red {
+	background: #C3272B !important ; 
+	border:none;
+	
+}
+
+.nice-green {
+	background:#26A65B !important ;
+	border:none;
+}
+
+.nice-yellow {
+	background:#E08A1E !important ;
+	border:none;
+}
+
+custom-width {
+	width: 55px ;
 }
 
 .td-flex {

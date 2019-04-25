@@ -51,7 +51,7 @@ app.use(function(req, res, next){
 
 const authenticator = (passport.authenticate('local', {
         successRedirect:'/admin/portal',
-        failureRedirect:'/login'
+        failureRedirect:'/admin/portal'
 }));
 
 
@@ -71,7 +71,10 @@ app.get('/',(req,res)=> res.render('index'));
 
 app.get('/about-us', (req,res) => res.render('aboutus'));
 
-app.get('/jobs',(req,res)=> res.render('job-page'));
+app.get('/jobs',(req,res)=> {
+    Job.find({}, (err,allJobs) => err? console.log(err) : res.render('job-page', {allJobs:allJobs}));
+    
+});
 
 app.get('/contact', (req,res) => res.render('contact'));
 
@@ -117,13 +120,14 @@ app.post('/admin/portal',loginCheck,(req,res) => {
     let jobTitle = req.body.title;
     let jobLocation = req.body.location;
     let jobSalary = req.body.salary;
-    let jobDescription = req.body.description;
+    let jobYou = req.body.you;
     let jobDate = req.body.date;
-    let requ = req.body.requirements;
-    let what = req.body.what_;
+    let requ = req.body.requirements.match(/([^\+!\?]+[\+!\?]+)|([^\+!\?]+$)/g);
+    let duties = req.body.duties.match(/([^\+!\?]+[\+!\?]+)|([^\+!\?]+$)/g);
     let other = req.body.other;
+    let overview = req.body.overview;
     
-    let newJob = {title:jobTitle, location:jobLocation, salary:jobSalary, start_date:jobDate ,description:jobDescription, requirments:requ, what:what, other:other};
+    let newJob = {title:jobTitle, location:jobLocation, overview:overview, salary:jobSalary, start_date:jobDate ,you:jobYou, requirements:requ, duties:duties, other:other};
     
     Job.create(newJob, (err,newlyCreated) => err? console.log(err) : (res.redirect('/admin/portal'), console.log(newlyCreated)));
     

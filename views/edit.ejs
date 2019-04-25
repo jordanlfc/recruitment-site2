@@ -1,4 +1,4 @@
-<% include ./partials/head %>
+<% include ./partials/head1 %>
  <link rel="stylesheet" href="/css/portal.css">
  
 <section class = "container">
@@ -19,7 +19,7 @@
 						<div class="col-lg-7 col-md-10">
 							<div class="card shadow-sm">
 								<div class="card-header">
-									<h4 class="mb-0">Edit <%=this.job%></h4>
+									<h4 class="mb-0">Edit <%=job.title%></h4>
 								</div>
 								<div class="card-body">
 
@@ -32,8 +32,8 @@
 											<div class="css3-spinner-double-bounce2"></div>
 										</div>
 
-										<form class="nobottommargin" id="template-contactform" name="template-contactform"
-											action='<%=job._id%>?_method=PUT' method='POST'>
+										<form class="nobottommargin" id="jobedit" name="jobedit"
+											action='/portal/<%=job._id%>?_method=PUT' method='POST'>
 
 											<div class="row">
 
@@ -63,7 +63,7 @@
 													<label for="requirements">Requirements<small
 															class="text-danger">*</small></label>
 													<textarea class="required form-control textarea-message" id="requirements"
-														name="job[requirements]" rows="6" cols="30"></textarea>
+														name="job[requirements]" rows="6" cols="30" value="<%job.requirements%>"></textarea>
 												</div>
 												<div class="col-12 bottommargin-sm">
 													<label for="description">Job Description<small
@@ -86,9 +86,12 @@
 
 
 
-												<div class="col-12">
-													<button type="submi" name="template-contactform-submit"
-														class="btn btn-secondary btn-block btn-lg">Send</button>
+												<div class=  "col-12 d-flex align-items-center">
+													<button type="submit" name="submit"
+														class="btn btn-secondary btn-block btn-md custom-button-green m-1">Submit</button>
+													<button action="/back"name="back"
+														class="btn btn-secondary btn-block btn-md custom-button-red m-1">Back</button>
+														
 												</div>
 
 											</div>
@@ -110,6 +113,10 @@
 	<!-- Go To Top
 	============================================= -->
 	<div id="gotoTop" class="icon-angle-up"></div>
+	
+	<script>
+		document.querySelector('body').css=('background','blue')
+	</script>
 
 
 </body>
