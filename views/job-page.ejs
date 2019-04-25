@@ -147,12 +147,11 @@
 
 								<div class="col_full">
 									<label for="template-jobform-service">Position <small>*</small></label>
-									<select name="template-jobform-position" id="template-jobform-position"  tabindex="9" class="sm-form-control required">
+										<select name="template-jobform-position" id="template-jobform-position"  tabindex="9" class="sm-form-control required">
 										<option value="">-- Select Position --</option>
-										<option value="Senior Python Developer">Senior Python Developer</option>
-										<option value="Design Analyst">Design Analyst</option>
-										<option value="Head of UX and Design">Head of UX and Design</option>
-										<option value="Web &amp; Visual Designer (Marketing)">Web &amp; Visual Designer (Marketing)</option>
+											<%allJobs.map(job => { %>
+										<option value="<%=job.title%>"><%=job.title%></option>
+											<% }); %>	
 									</select>
 								</div>
 
