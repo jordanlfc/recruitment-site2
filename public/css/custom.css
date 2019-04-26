@@ -45,6 +45,10 @@ box-shadow: -16px 21px 7px 0px rgba(0,0,0,0.75);
     overflow: inherit;
 }
 
+#custom-footer {
+    padding: 50px 0;
+}
+
 
 
 #slider h1 { 
@@ -58,9 +62,10 @@ box-shadow: -16px 21px 7px 0px rgba(0,0,0,0.75);
 	text-transform: uppercase;
   }
 
-@media (max-width:700px) {
+@media (max-width:1000px) {
 	#slider h1 {
-		font-size: 2em;
+		display:flex;
+		font-size: 4em;
 	}
 }
 
@@ -68,5 +73,22 @@ box-shadow: -16px 21px 7px 0px rgba(0,0,0,0.75);
 	.p-title {
 		font-size: 1.2em;
 		margin-top:0.3em;
+	}
+}
+@media (max-width:985px) {
+	.p-title {
+		font-size: 1.2em;
+		margin-top:0.3em;
+	}
+}
+
+
+@media (max-width:500px) {
+	.p-title, #logo {
+		display:flex;
+		align-items:center;
+		font-size: 1.4em;
+		margin-top:0.3em;
+		line-height:1.2em;
 	}
 }

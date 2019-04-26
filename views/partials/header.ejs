@@ -33,17 +33,26 @@
 							</li>
 						</ul>
 						<ul>
-							<li class=""><a href="index.html">
+							<li class=""><a href="/jobs">
 									<div>Jobs</div>
 								</a>
 							</li>
 						</ul>
 						<ul>
-							<li class=""><a href="index.html">
+							<li class=""><a href="/contact">
 									<div>Contact</div>
 								</a>
 							</li>
 						</ul>
+						
+						<% if(currentUser) {%>
+						<ul>
+							<li class=""><a href="/logout">
+									<div>Logout</div>
+								</a>
+							</li>
+						</ul>
+						<% } %>
 				</nav><!-- #primary-menu end -->
 
 			</div>
