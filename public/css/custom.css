@@ -62,10 +62,22 @@ box-shadow: -16px 21px 7px 0px rgba(0,0,0,0.75);
 	text-transform: uppercase;
   }
 
-@media (max-width:1000px) {
+@media (max-width:990px) {
 	#slider h1 {
 		display:flex;
 		font-size: 4em;
+	}
+}
+@media (max-width:795px) {
+	#slider h1 {
+		display:flex;
+		font-size: 3em;
+	}
+}
+@media (max-width:610px) {
+	#slider h1 {
+		display:flex;
+		font-size: 1.5em;
 	}
 }
 
