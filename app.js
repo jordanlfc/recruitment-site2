@@ -8,7 +8,9 @@ var express = require("express"),
     User = require("./models/user"),
     Job = require("./models/jobs"),
     cookieSession = require('cookie-session'),
-    nodemailer = require("nodemailer");
+    nodemailer = require("nodemailer"),
+    flash = require('connect-flash'),
+    { check, validationResult } = require('express-validator/check');
 
 
 
@@ -25,7 +27,7 @@ mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true })
 
 
 //--setup
-
+app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.set("view engine", "ejs");
@@ -190,7 +192,23 @@ app.get('/logout', (req, res) => (req.logout(), res.redirect('/jobs')));
 
 
 
-app.post('/send', (req, res) => {
+app.post('/send', [
+    
+    check('fname').not().isEmpty(),
+    check('lname').not().isEmpty(),
+    check('email').isEmail(),
+    check('position').not().isEmpty(),
+    check('message').not().isEmpty(),
+    
+    ], (req, res) => { 
+        
+    const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(422).json({ errors: errors.array() });
+  }
+        
+        
+    
     const output = `
     <p>You have a new job application for '${req.body.position}'</p>
     <h3>Contact Details<h3>
@@ -247,7 +265,7 @@ app.post('/send', (req, res) => {
             allJobs: allJobs,
             
         }));
-    }
+    };
 
     main().catch(console.error);
 
