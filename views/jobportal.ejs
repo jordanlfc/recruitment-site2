@@ -25,9 +25,6 @@
             <td><%=jobs.salary%></td>
             <td class ='td-flex align-items-start'>
                 <a style="width:55px" class ='btn  btn-sm btn-warning text-white nice-green custom-width' href = '/portal/<%=jobs._id%>/edit'>Edit</a>
-                <form>
-                    <button style="width:55px" class="btn  btn-sm nice-yellow text-white custom-width">Hide</button>
-                </form>
                 <form id ='del-form'action ='/admin/portal/<%=jobs._id%>?_method=DELETE' method = 'POST'>
                     <button class="btn btn-sm  btn-danger nice-red custom-width">Delete</button>
                 </form>

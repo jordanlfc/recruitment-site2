@@ -59,6 +59,8 @@ app.use(function (req, res, next) {
     next();
 });
 
+
+
 //functions
 
 const authenticator = (passport.authenticate('local', {
@@ -115,12 +117,14 @@ const loginCheck = function (req, res, next) {
 
 //get routes
 
+
+
 app.get('/', (req, res) => res.render('index'));
 
 app.get('/about-us', (req, res) => res.render('aboutus'));
 
 app.get('/jobs', (req, res) => {
-    Job.find({}, (err, allJobs) => err ? console.log(err) : res.render('job-page', { allJobs: allJobs }));
+    Job.find({}, (err, allJobs) => err ? res.redirect('/back') : res.render('job-page', { allJobs: allJobs }));
 
 });
 
@@ -131,16 +135,16 @@ app.get('/admin/create/new/admin1', (req, res) => res.render('newadmin'));
 app.get('/admin/login', (req, res) => res.render('login'));
 
 app.get('/admin/portal', loginCheck, (req, res) => {
-    Job.find({}, (err, allJobs) => err ? console.log(err) : res.render('jobportal', { allJobs: allJobs }));
+    Job.find({}, (err, allJobs) => err ? res.redirect('/back') : res.render('jobportal', { allJobs: allJobs }));
 
 });
 
 app.get('/portal/:id/edit', loginCheck, (req, res) => {
     Job.findById(req.params.id, function (err, foundJob) {
+        err? res.redirect('/back'):
         res.render('edit', { job: foundJob });
     });
 });
-
 //get routes--end
 
 //post routes
@@ -376,8 +380,9 @@ app.post('/contact', (req, res) => {
 //nodemailer route--end
 
 
-
-
+app.use(function(req, res, next){
+    res.status(404).render('404');
+});
 
 
 app.listen(process.env.PORT, process.env.IP, function () {
