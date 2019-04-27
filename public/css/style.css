@@ -1187,7 +1187,7 @@ body.stretched #header.full-header .container {
 }
 
 #primary-menu ul li:hover > a,
-#primary-menu ul li.current > a { color: #1ABC9C; }
+#primary-menu ul li.current > a { color: #22a7f0; }
 
 #primary-menu > ul > li.sub-menu > a > div { }
 
@@ -2039,7 +2039,7 @@ body:not(.device-md):not(.device-sm):not(.device-xs) #header.transparent-header:
 #header,
 #header-wrap,
 #logo img {
-	height: 100px;
+	height: 130px;
 	-webkit-transition: height .4s ease, opacity .3s ease;
 	-o-transition: height .4s ease, opacity .3s ease;
 	transition: height .4s ease, opacity .3s ease;
