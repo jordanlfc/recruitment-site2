@@ -9,7 +9,10 @@ var express = require("express"),
     Job = require("./models/jobs"),
     cookieSession = require('cookie-session'),
     nodemailer = require("nodemailer"),
+    multer           = require('multer'),
     flash = require('connect-flash'),
+    uploader = multer(),
+    withcv = uploader.single('cvfile'),
     { check, validationResult } = require('express-validator/check');
 
 
@@ -72,6 +75,42 @@ const loginCheck = function (req, res, next) {
 };
 
 //functions--end
+
+
+//multer upload 
+
+
+
+//multer upload--end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 //get routes
@@ -192,22 +231,23 @@ app.get('/logout', (req, res) => (req.logout(), res.redirect('/jobs')));
 
 
 
-app.post('/send', [
+
+app.post('/send', withcv, [
     
     check('fname').not().isEmpty(),
     check('lname').not().isEmpty(),
     check('email').isEmail(),
     check('position').not().isEmpty(),
-    check('message').not().isEmpty(),
     
-    ], (req, res) => { 
+    ],(req, res) => { 
         
     const errors = validationResult(req);
   if (!errors.isEmpty()) {
-    return res.status(422).json({ errors: errors.array() });
+    return res.redirect('back');
   }
-        
-        
+  
+  const cv = req.file;
+  
     
     const output = `
     <p>You have a new job application for '${req.body.position}'</p>
@@ -248,11 +288,20 @@ app.post('/send', [
 
         // send mail with defined transport object
         let info = await transporter.sendMail({
-            from:`admin <${req.body.email}>`, // sender address
-            to: "jordanfear1989@gmail.com", // list of receivers
-            subject: `Application - ${req.body.position}`, // Subject line
-            html: output // html body
+            from:`admin <${req.body.email}>`,
+            to: "jordanfear1989@gmail.com",
+            subject: `Application - ${req.body.position}`,
+            html: output,
+            attachments: [{
+                filename: cv.originalname,
+                contentType: cv.mimetype,
+                encoding: cv.encoding,
+                content: cv.buffer
+            }]
+            
         });
+        
+  
 
         console.log("Message sent: %s", info.messageId);
         // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
@@ -306,7 +355,7 @@ app.post('/contact', (req, res) => {
             from:`admin <${req.body.email}>`, // sender address
             to: "jordanfear1989@gmail.com", // list of receivers
             subject: `Application - ${req.body.subject}`, // Subject line
-            html: output // html body
+            html: output,
         });
 
         console.log("Message sent: %s", info.messageId);

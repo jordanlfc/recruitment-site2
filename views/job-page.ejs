@@ -116,41 +116,41 @@
 
 							<div class="form-result"></div>
 
-							<form action="/send" id="jobform" name="jobform" method="post">
+							<form action="/send" id="jobform" name="jobform" method="post" enctype="multipart/form-data">
 
 								<div class="form-process"></div>
 
 								<div class="col_half">
 									<label for="fname">First Name <small>*</small></label>
-									<input type="text" id="fname" name="fname" value="" class="sm-form-control required" />
+									<input type="text" id="fname" name="fname" value="" class="sm-form-control " required />
 								</div>
 
 								<div class="col_half col_last">
 									<label for="lname">Last Name <small>*</small></label>
-									<input type="text" id="lname" name="lname" value="" class="sm-form-control required" />
+									<input type="text" id="lname" name="lname" value="" class="sm-form-control " required />
 								</div>
 
 								<div class="clear"></div>
 
 								<div class="col_full">
 									<label for="email">Number <small>*</small></label>
-									<input type="text" id="number" name="number" value="" class="required sm-form-control" />
+									<input type="text" id="number" name="number" value="" class=" sm-form-control" required />
 								</div>
 								<div class="col_full">
 									<label for="email">Email <small>*</small></label>
-									<input type="email" id="email" name="email" value="" class="required email sm-form-control" />
+									<input type="email" id="email" name="email" value="" class=" email sm-form-control" required />
 								</div>
 
 								<div class="col-full">
 									<label for="city">City <small>*</small></label>
-									<input type="text" name="city" id="city" value="" size="22" tabindex="5" class="sm-form-control required" />
+									<input type="text" name="city" id="city" value="" size="22" tabindex="5" class="sm-form-control "  required/>
 								</div>
 
 								<div class="clear"></div>
 
 								<div class="col_full">
 									<label for="service">Position <small>*</small></label>
-										<select name="position" id="position"  tabindex="9" class="sm-form-control required">
+										<select name="position" id="position"  tabindex="9" class="sm-form-control " required>
 										<option value="">-- Select Position --</option>
 											<%allJobs.map(job => { %>
 										<option value="<%=job.title%>"><%=job.title%></option>
@@ -173,7 +173,12 @@
 
 								<div class="col_full">
 									<label for="message">Message <small>*</small></label>
-									<textarea name="message" id="message" rows="6" tabindex="11" class="sm-form-control required"></textarea>
+									<textarea name="message" id="message" rows="6" tabindex="11" class="sm-form-control "></textarea>
+								</div>
+								
+								<div class="col_full">
+									<label for="cvfile">Upload CV <small>*</small></label>
+									<input type="file" id="cvfile" name="cvfile" value="" class="sm-form-control" />
 								</div>
 
 								<div class="col_full">
