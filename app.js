@@ -10,6 +10,7 @@ var express = require("express"),
     cookieSession = require('cookie-session'),
     nodemailer = require("nodemailer"),
     flash = require('connect-flash'),
+    cookieParser = require('cookie-parser'),
     { check, validationResult } = require('express-validator/check');
 
 
@@ -27,6 +28,18 @@ mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true })
 
 
 //--setup
+
+app.use(cookieParser('keyboard cat'));
+
+app.use(cookieSession({
+    name: 'adminsession',
+    keys: ['key1', 'key2'],
+    maxAge: 1500000
+}));
+
+app.use(flash());
+
+
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -37,14 +50,6 @@ app.use(methodOverride("_method"));
 
 // PASSPORT CONFIGURATION
 
-app.use(cookieSession({
-    name: 'adminsession',
-    keys: ['key1', 'key2'],
-    maxAge: 1500000
-
-}));
-
-
 app.use(passport.initialize());
 app.use(passport.session());
 passport.use(new LocalStrategy(User.authenticate()));
@@ -53,6 +58,8 @@ passport.deserializeUser(User.deserializeUser());
 
 app.use(function (req, res, next) {
     res.locals.currentUser = req.user;
+    res.locals.error = req.flash("error");
+    res.locals.success = req.flash("success");
     next();
 });
 
@@ -261,13 +268,15 @@ app.post('/send', [
         console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
         // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
         
-        Job.find({}, (err, allJobs) => err ? console.log(err) : res.render('job-page', { 
-            allJobs: allJobs,
-            
-        }));
+        
     };
 
     main().catch(console.error);
+    req.flash('success', 'email sent')
+    Job.find({}, (err, allJobs) => err ? console.log(err) : res.render('job-page', { 
+            allJobs: allJobs,
+            message:req.flash()
+                   }));
 
 });
 
